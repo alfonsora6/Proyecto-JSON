@@ -6,7 +6,7 @@ while respuesta!=6:
     
     #Ejercicio 1
     if respuesta==1:
-        peliculas,sipnosis=listar_peliculas(fichero)
+        peliculas,sipnosis=listar_peliculas_y_sipnosis(fichero)
         for pelicula,sipno in zip(peliculas,sipnosis):
             print("\n\nNombre de la película:",pelicula,"\n\nSipnosis:",sipno)
     
@@ -18,8 +18,9 @@ while respuesta!=6:
     
     #Ejercicio 3
     elif respuesta==3:
-        pelicula=input("Introduce una película: ")
-        reparto=mostar_reparto(fichero,pelicula)
+        peliculas=mostrar_peliculas(fichero)
+        pelicula=input("\nIntroduce una película: ")
+        reparto=mostrar_reparto(fichero,pelicula)
         if reparto != False:    
             print("\nReparto de %s:\n"%pelicula)
             for actor in reparto:
@@ -38,10 +39,18 @@ while respuesta!=6:
             print("\nPelículas que pertenecen al género %s:\n"%genero)
             for pelicula in peliculas:
                 print("-",pelicula)
-            
-    #elif respuesta==5:
 
-
+    #Ejercicio 5        
+    elif respuesta==5:
+        cines=mostrar_cines(fichero)
+        print("\nLISTADO DE CINES:")
+        for cine in cines:
+            print("-",cine)
+        cartelera=mostrar_cartelera(fichero)
+        
+        if cartelera!=False:
+            genero=mostrar_generos_de_una_pelicula(fichero)
+    
     respuesta=menu()
 
 print("Has salido del programa.")

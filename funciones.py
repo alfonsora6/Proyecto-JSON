@@ -27,7 +27,7 @@ def menu():
     return opcion
 
 #Ejercicio 1
-def listar_peliculas(datos):
+def listar_peliculas_y_sipnosis(datos):
     peliculas=[]
     sipnosis=[]
     for pelicula,sipno in datos.get("peliculas").items():
@@ -45,7 +45,16 @@ def contar_sesiones(datos):
     return cines,sesiones
 
 #Ejercicio 3
-def mostar_reparto(datos,pelicula):
+def mostrar_peliculas(datos):
+    peliculas=[]
+    for pelicula in datos.get("peliculas"):
+        peliculas.append(pelicula)
+    print("\nLista de películas:")
+    for pelicula in peliculas:
+        print("-",pelicula)
+
+
+def mostrar_reparto(datos,pelicula):
     reparto=[]
     if pelicula in datos.get("peliculas"):
         for actor in datos.get("peliculas").get(pelicula).get("reparto"):
@@ -81,3 +90,34 @@ def mostrar_peliculas_por_genero(datos,genero):
     return lista
 
 #Ejercicio 5
+def mostrar_cines(datos):
+    cines=[]
+    for cine in datos.get("cines"):
+        cines.append(cine)
+    return cines
+
+def mostrar_cartelera(datos):
+    try:
+        cartelera=[]
+        cine=input("\nIntroduce un cine: ")
+        for pelicula in datos.get("cines").get(cine).get("peliculas"):
+            cartelera.append(pelicula)
+        print("\nPelículas disponibles en %s:"%cine)
+        for pelicula in cartelera:
+            print("-",pelicula)
+    except:
+        print("Error, cine incorrecto.")
+        cartelera=False
+        return cartelera
+
+def mostrar_generos_de_una_pelicula(datos):
+    try:
+        pelicula=input("Introduce una película: ")
+        generos=[]
+        for genero in datos.get("peliculas").get(pelicula).get("genero"):
+            generos.append(genero)
+        print("\nGéneros de %s:"%pelicula)
+        for genero in generos:
+            print("-",genero)
+    except:
+        print("Error, película incorrecta.")
